@@ -5,7 +5,7 @@
   --color-custom-white: #fffcec;
   --color-custom-green: #2eb885;
 
-  --background-image-marquee-banner: url(./assets/marquee_border.svg);
+  --background-image-marquee-banner: url(../patterns/marquee_border.svg);
   --background-image-marquee-banner-png: url(https://2tbvn4haj0.ufs.sh/f/jTupBFNKiwOdYQmj72MQnJx6waY0mdLOvijU4ZgC9fyrzhDB);
   --background-image-noise-light: url(https://2tbvn4haj0.ufs.sh/f/jTupBFNKiwOdIOeZYna9fZUb5QXuMdGaP9yYqsJ6mljEhpAI);
 }
