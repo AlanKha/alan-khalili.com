@@ -25,7 +25,6 @@ export default function Card({
       transition={{
         duration: 2,
         delay: 0.5,
-        ease: "easeInOut",
       }}
     >
       <div className="text-2xl pt-4 md:pt-0 md:h-40 flex flex-col md:flex-row items-center border-b pb-2 border-black">
