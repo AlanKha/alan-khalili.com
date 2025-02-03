@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-custom-brown: #896043c2;
+  --color-custom-brown: #896043;
   --color-custom-white: #fffcec;
   --color-custom-green: #2eb885;
 
@@ -12,5 +12,5 @@
 
 :root {
   scroll-behavior: smooth;
-  @apply text-custom-white bg-custom-brown bg-noise-light;
+  @apply text-custom-white bg-custom-brown/75 bg-noise-light;
 }
