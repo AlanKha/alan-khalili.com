@@ -31,16 +31,18 @@ export default function Header() {
 
   return (
     <div
-      className={`sticky top-0 z-50 h-12 transition-all duration-300 ${
-        hasScrolled ? "bg-white bg-noise-light !opacity-100" : "bg-transparent"
+      className={`sticky top-0 z-50 h-16 transition-all duration-300 ${
+        hasScrolled ? "bg-white bg-noise-light" : "bg-transparent"
       }`}
     >
       <div
-        className={`transition-all duration-300 ${
-          hasScrolled ? "bg-custom-brown/75 bg-noise-light !opacity-100" : ""
+        className={`h-full transition-all duration-300 ${
+          hasScrolled
+            ? "bg-custom-brown/75 border-b-2 border-custom-white bg-noise-light"
+            : ""
         }`}
       >
-        <div className="flex justify-between px-12 lg:px-36 pt-2 text-xl">
+        <div className="flex justify-between items-center px-12 lg:px-36 h-full text-xl">
           {/* Left side */}
           <div>
             <a href="#main" className="text-2xl font-semibold">
