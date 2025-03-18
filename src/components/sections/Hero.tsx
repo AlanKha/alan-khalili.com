@@ -36,8 +36,7 @@ export default function Hero() {
         >
           I love coding, coffee, and keyboards!
         </RoughNotation>{" "}
-        Excited to be joining Walmart Global Tech as a Software Engineering Intern this summer!
-        Feel free to{" "}
+        Excited to be joining Walmart as a SWE Intern this summer! Feel free to{" "}
         <RoughNotation
           type="circle"
           show={true}
@@ -45,7 +44,9 @@ export default function Hero() {
           animationDelay={4000}
           multiline={true}
         >
-          <a className="underline" href="#Contact">reach out</a>
+          <a className="underline" href="#Contact">
+            reach out
+          </a>
         </RoughNotation>
       </h2>
     </div>
