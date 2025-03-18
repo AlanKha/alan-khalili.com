@@ -23,9 +23,10 @@ export default function Card({
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{
-        duration: 2,
-        delay: 0.5,
+        duration: 1,
+        delay: 0.25,
       }}
+      viewport={{ once: true }}
     >
       <div className="text-2xl pt-4 md:pt-0 md:h-40 flex flex-col md:flex-row items-center border-b pb-2 border-black">
         <div className="w-full md:w-32 mb-4 md:mb-0">

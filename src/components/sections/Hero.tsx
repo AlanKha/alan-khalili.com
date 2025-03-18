@@ -24,7 +24,7 @@ export default function Hero() {
       </h1>
       <h2 className="text-xl leading-loose">
         It&apos;s my third year at The University of Tennessee studying Computer
-        Science, and{" "}
+        Science!{" "}
         <RoughNotation
           type="highlight"
           iterations={1}
@@ -36,7 +36,7 @@ export default function Hero() {
         >
           I love coding, coffee, and keyboards!
         </RoughNotation>{" "}
-        Currently looking for Software Engineering Internship Opportunities!
+        Excited to be joining Walmart Global Tech as a Software Engineering Intern this summer!
         Feel free to{" "}
         <RoughNotation
           type="circle"
@@ -45,7 +45,7 @@ export default function Hero() {
           animationDelay={4000}
           multiline={true}
         >
-          <a href="#Contact">reach out</a>
+          <a className="underline" href="#Contact">reach out</a>
         </RoughNotation>
       </h2>
     </div>
