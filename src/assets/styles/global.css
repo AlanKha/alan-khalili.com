@@ -2,8 +2,10 @@
 
 @theme {
   --color-custom-brown: #896043;
-  --color-custom-white: #fffcec;
+  --color-custom-ivory: #fbfff1;
   --color-custom-green: #2eb885;
+  --color-custom-green: #73937e;
+  --color-custom-blue: #18314f;
 
   --background-image-marquee-banner: url(../patterns/marquee_border.svg);
   --background-image-marquee-banner-png: url(https://2tbvn4haj0.ufs.sh/f/jTupBFNKiwOdYQmj72MQnJx6waY0mdLOvijU4ZgC9fyrzhDB);
@@ -12,5 +14,5 @@
 
 :root {
   scroll-behavior: smooth;
-  @apply text-custom-white bg-custom-brown/75 bg-noise-light;
+  @apply text-custom-ivory bg-custom-brown bg-noise-light;
 }

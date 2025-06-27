@@ -18,7 +18,7 @@ export default function SlidingMarquee() {
   }, []);
 
   return (
-    <div className="my-0 flex text-black text-2xl bg-linear-to-b from-transparent to-white via-white overflow-hidden">
+    <div className="my-0 flex text-black text-2xl bg-linear-to-b from-transparent to-custom-ivory via-custom-ivory overflow-hidden">
       <div className="h-32 flex items-center justify-center w-full bg-marquee-banner bg-repeat-x bg-contain">
         <Marquee pauseOnHover={true} delay={1}>
           {repos

@@ -32,13 +32,13 @@ export default function Header() {
   return (
     <div
       className={`sticky top-0 z-50 h-16 transition-all duration-300 ${
-        hasScrolled ? "bg-white bg-noise-light" : "bg-transparent"
+        hasScrolled ? "bg-custom-ivory bg-noise-light" : "bg-transparent"
       }`}
     >
       <div
         className={`h-full transition-all duration-300 ${
           hasScrolled
-            ? "bg-custom-brown/75 border-b-2 border-custom-white bg-noise-light"
+            ? "bg-custom-brown border-b-2 border-custom-custom-ivory bg-noise-light"
             : ""
         }`}
       >
@@ -95,7 +95,7 @@ export default function Header() {
                 },
               }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-custom-white text-black z-50"
+              className="fixed inset-0 bg-custom-ivory text-black z-50"
               style={{ overflow: "hidden" }}
               onAnimationStart={() => {
                 document.body.style.overflow = "hidden";

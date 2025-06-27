@@ -95,7 +95,7 @@ export default function Contact() {
                 type="text"
                 id="name"
                 name="name"
-                className="bg-white border-2 rounded-lg p-3 flex border-gray-300 text-black"
+                className="bg-custom-ivory border-2 rounded-lg p-3 flex border-gray-300 text-black"
                 value={contact.name}
                 onChange={handleChange}
                 required
@@ -109,7 +109,7 @@ export default function Contact() {
                 type="email"
                 id="email"
                 name="email"
-                className="bg-white border-2 rounded-lg p-3 flex border-gray-300 text-black"
+                className="bg-custom-ivory border-2 rounded-lg p-3 flex border-gray-300 text-black"
                 value={contact.email}
                 onChange={handleChange}
                 required
@@ -122,7 +122,7 @@ export default function Contact() {
               Message
             </label>
             <textarea
-              className="bg-white border-2 rounded-lg p-3 border-gray-300 text-black"
+              className="bg-custom-ivory border-2 rounded-lg p-3 border-gray-300 text-black"
               name="message"
               id="message"
               rows={10}
@@ -134,7 +134,7 @@ export default function Contact() {
 
           <button
             type="submit"
-            className="cursor-pointer rounded-lg bg-custom-green text-customWhite mt-4 w-full p-4"
+            className="cursor-pointer rounded-lg bg-custom-green text-custom-ivory mt-4 w-full p-4"
           >
             Send Message
           </button>
