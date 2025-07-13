@@ -134,7 +134,7 @@ export default function Contact() {
 
           <button
             type="submit"
-            className="cursor-pointer rounded-lg bg-custom-green text-custom-ivory mt-4 w-full p-4"
+            className="cursor-pointer rounded-lg bg-custom-green border-2 border-green-900 text-custom-ivory mt-4 w-full p-4"
           >
             Send Message
           </button>

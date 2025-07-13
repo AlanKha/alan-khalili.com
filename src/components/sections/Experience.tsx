@@ -17,18 +17,10 @@ export default function Experience() {
       imageAlt: "Hack4Impact logo",
       title: "Director of Talent Development, Hack4Impact",
       description:
-        "Led 40+ students to build and maintain our internal web applications.",
+        "Led 30+ students to build and maintain our internal web applications.",
       link: "https://utk.hack4impact.org/",
     },
-    {
-      imageSrc:
-        "https://2tbvn4haj0.ufs.sh/f/jTupBFNKiwOdcRbej9Xly7KdRxX4tiC2wkPnsvJcS9ZEzoWI",
-      imageAlt: "St. Christopher's Fund logo",
-      title: "Developer, St. Christopher's Fund",
-      description:
-        "Developed centralized user and admin dashboards for streamlined program management.",
-      link: "https://truckersfund.org/",
-    },
+
     {
       imageSrc:
         "https://2tbvn4haj0.ufs.sh/f/jTupBFNKiwOdqIcvNI3oG3Dmfe0pcas4OESBkTqy7ZlQbtPd",

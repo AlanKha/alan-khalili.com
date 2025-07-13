@@ -23,7 +23,7 @@ export default function Hero() {
         👋
       </h1>
       <h2 className="text-xl leading-loose">
-        It&apos;s my third year at The University of Tennessee studying Computer
+        It&apos;s my last year at The University of Tennessee studying Computer
         Science!{" "}
         <RoughNotation
           type="highlight"
@@ -36,7 +36,7 @@ export default function Hero() {
         >
           I love coding, coffee, and keyboards!
         </RoughNotation>{" "}
-        Excited to be joining Walmart as a SWE Intern this summer! Feel free to{" "}
+        Always on the lookout for new, exciting opportunities! Feel free to{" "}
         <RoughNotation
           type="circle"
           show={true}

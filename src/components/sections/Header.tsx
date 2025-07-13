@@ -45,7 +45,7 @@ export default function Header() {
         <div className="flex justify-between items-center px-12 lg:px-36 h-full text-xl">
           {/* Left side */}
           <div>
-            <a href="#main" className="text-2xl font-semibold">
+            <a href="#Hero" className="text-2xl font-semibold">
               <span>Alan Khalili</span>
             </a>
           </div>
