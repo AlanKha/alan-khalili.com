@@ -33,11 +33,10 @@ export default function Contact() {
 
       const json = await res.json();
 
-      if (json.success) {
+      if (json.message === "Form submitted successfully") {
         setResponse({
           type: "success",
-          message:
-            "Thank you for reaching out! Your message has been delivered to my email and I will respond back as soon as I can.",
+          message: json.message,
         });
       } else {
         setResponse({
@@ -59,12 +58,12 @@ export default function Contact() {
       <h1 className="py-4 text-4xl font-bold text-center">Contact</h1>
 
       {response.type === "success" && (
-        <div className="text-center bg-custom-green text-customWhite p-4 rounded-lg">
+        <div className="text-center bg-custom-green text-custom-ivory p-4 rounded-lg">
           {response.message}
         </div>
       )}
       {response.type === "error" && (
-        <div className="text-center bg-red-400 text-customWhite p-4 rounded-lg notification is-danger">
+        <div className="text-center bg-red-400 text-customWhite p-4 rounded-lg">
           {response.message}
         </div>
       )}
