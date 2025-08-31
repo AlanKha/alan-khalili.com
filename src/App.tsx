@@ -5,6 +5,7 @@ import Experience from "./components/sections/Experience";
 import Projects from "./components/sections/Projects";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/sections/Footer";
+import { Analytics } from "@vercel/analytics/react";
 
 /**
  * The main component of the application.
@@ -13,6 +14,7 @@ import Footer from "./components/sections/Footer";
 function App() {
   return (
     <>
+      <Analytics />
       <Header />
       <Hero />
       <SlidingMarquee />
