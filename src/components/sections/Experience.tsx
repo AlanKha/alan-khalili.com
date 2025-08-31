@@ -1,5 +1,8 @@
 import Card from "../ui/Card";
 
+/**
+ * A component that renders the experience section.
+ */
 export default function Experience() {
   const experiences = [
     {

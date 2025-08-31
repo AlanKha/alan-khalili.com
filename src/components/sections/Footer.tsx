@@ -1,3 +1,6 @@
+/**
+ * A component that renders the footer section.
+ */
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 

@@ -1,6 +1,9 @@
 import { AiFillGithub } from "react-icons/ai";
 import { motion } from "motion/react";
 
+/**
+ * The props for the Card component.
+ */
 interface CardProps {
   imageSrc: string;
   imageAlt: string;
@@ -10,6 +13,15 @@ interface CardProps {
   githubLink?: string;
 }
 
+/**
+ * A component that renders a card with an image, title, description, and links.
+ * @param imageSrc The source of the image.
+ * @param imageAlt The alt text for the image.
+ * @param title The title of the card.
+ * @param description The description of the card.
+ * @param link The link to the project.
+ * @param githubLink The link to the project's GitHub repository.
+ */
 export default function Card({
   imageSrc,
   imageAlt,

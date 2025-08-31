@@ -4,6 +4,9 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import { RESUME_LINK } from "../../constants";
 
+/**
+ * A component that renders the header section.
+ */
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -72,7 +75,7 @@ export default function Header() {
               transition={{ duration: 0.3 }}
             >
               {isOpen ? (
-                <AiOutlineClose size={30} className="text-black" />
+                <AiOutlineClose size={30} className="text-custom-black" />
               ) : (
                 <AiOutlineMenu size={30} />
               )}
@@ -96,7 +99,7 @@ export default function Header() {
                 },
               }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-custom-ivory text-black z-50"
+              className="fixed inset-0 bg-custom-ivory text-custom-black z-50"
               style={{ overflow: "hidden" }}
               onAnimationStart={() => {
                 document.body.style.overflow = "hidden";

@@ -1,7 +1,31 @@
 import { useState } from "react";
 
+/**
+ * The state of the contact form.
+ */
+interface ContactState {
+  name: string;
+  email: string;
+  subject: string;
+  honeypot: string;
+  message: string;
+  replyTo: string;
+  accessKey: string;
+}
+
+/**
+ * The state of the response from the server.
+ */
+interface ResponseState {
+  type: "success" | "error" | "";
+  message: string;
+}
+
+/**
+ * A component that renders a contact form.
+ */
 export default function Contact() {
-  const [contact, setContact] = useState({
+  const [contact, setContact] = useState<ContactState>({
     name: "",
     email: "",
     subject: "Contact Form",
@@ -11,17 +35,25 @@ export default function Contact() {
     accessKey: import.meta.env.VITE_ACCESS_KEY,
   });
 
-  const [response, setResponse] = useState({
+  const [response, setResponse] = useState<ResponseState>({
     type: "",
     message: "",
   });
 
+  /**
+   * Handles changes to the form fields.
+   * @param e The change event.
+   */
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
 
+  /**
+   * Handles the form submission.
+   * @param e The form event.
+   */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -63,19 +95,25 @@ export default function Contact() {
         </div>
       )}
       {response.type === "error" && (
-        <div className="text-center bg-red-400 text-customWhite p-4 rounded-lg">
+        <div className="text-center bg-custom-red text-custom-ivory p-4 rounded-lg">
           {response.message}
         </div>
       )}
 
       {!response.message && (
         <form onSubmit={handleSubmit}>
-          <input type="hidden" name="accessKey" value={contact.accessKey} />
+          <input
+            type="hidden"
+            name="accessKey"
+            value={contact.accessKey}
+            aria-label="Access Key"
+          />
           <input
             type="hidden"
             name="subject"
             value={contact.subject}
             onChange={handleChange}
+            aria-label="Subject"
           />
           <input
             type="hidden"
@@ -83,6 +121,7 @@ export default function Contact() {
             value={contact.honeypot}
             onChange={handleChange}
             className="hidden"
+            aria-label="Honeypot"
           />
 
           <div className="grid md:grid-cols-2 gap-4 w-full py-2">
@@ -98,6 +137,7 @@ export default function Contact() {
                 value={contact.name}
                 onChange={handleChange}
                 required
+                aria-label="Name"
               />
             </div>
             <div className="flex flex-col">
@@ -112,6 +152,7 @@ export default function Contact() {
                 value={contact.email}
                 onChange={handleChange}
                 required
+                aria-label="Email"
               />
             </div>
           </div>
@@ -128,6 +169,7 @@ export default function Contact() {
               value={contact.message}
               onChange={handleChange}
               required
+              aria-label="Message"
             ></textarea>
           </div>
 

@@ -5,6 +5,7 @@ import "./assets/styles/global.css";
 import App from "./App.tsx";
 import ExternalRedirect from "./components/ExternalRedirect";
 import { RESUME_LINK } from "./constants";
+import NotFound from "./pages/NotFound.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -12,6 +13,7 @@ createRoot(document.getElementById("root")!).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/resume" element={<ExternalRedirect to={RESUME_LINK} />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

@@ -1,5 +1,8 @@
 import Card from "../ui/Card";
 
+/**
+ * A component that renders the projects section.
+ */
 export default function Projects() {
   const projects = [
     {

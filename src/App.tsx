@@ -6,6 +6,10 @@ import Projects from "./components/sections/Projects";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/sections/Footer";
 
+/**
+ * The main component of the application.
+ * Renders all the sections of the page.
+ */
 function App() {
   return (
     <>

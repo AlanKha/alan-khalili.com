@@ -1,5 +1,8 @@
 import { RoughNotation } from "react-rough-notation";
 
+/**
+ * A component that renders the hero section.
+ */
 export default function Hero() {
   return (
     <div
@@ -8,12 +11,12 @@ export default function Hero() {
     >
       <h1 className="text-6xl leading-snug font-bold pb-4">
         Hi, my name is{" "}
-        <span className="text-blue-300">
+        <span className="text-custom-blue">
           <RoughNotation
             type="underline"
             show={true}
             animationDelay={500}
-            color={"white"}
+            color="var(--color-custom-ivory)"
             strokeWidth={3}
             multiline={true}
           >
@@ -29,7 +32,7 @@ export default function Hero() {
           type="highlight"
           iterations={1}
           show={true}
-          color={"#bf9002"}
+          color="var(--color-custom-yellow)"
           animationDelay={2000}
           animationDuration={1000}
           multiline={true}
@@ -40,7 +43,7 @@ export default function Hero() {
         <RoughNotation
           type="circle"
           show={true}
-          color="white"
+          color="var(--color-custom-ivory)"
           animationDelay={4000}
           multiline={true}
         >
