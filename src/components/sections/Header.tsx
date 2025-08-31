@@ -2,6 +2,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
+import { RESUME_LINK } from "../../constants";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +24,7 @@ export default function Header() {
     { href: "#Projects", text: "Projects" },
     { href: "#Contact", text: "Contact" },
     {
-      href: "https://drive.google.com/file/d/1Tl-Rk3PzGutTMBqUW4pap3Og_XXCxw2E/view?usp=sharing",
+      href: RESUME_LINK,
       text: "Resume",
       isExternal: true,
     },
