@@ -95,9 +95,16 @@ export const projects: ProjectItem[] = [
   },
 ];
 
+export const musicContent = {
+  title: "My Café",
+  description: "A collection of songs that I've been listening to recently.",
+  playlistUrl: "https://embed.music.apple.com/us/playlist/my-caf%C3%A9/pl.u-BNA66G3u153mYR6",
+};
+
 export const menuItems = [
   { href: "#Experience", text: "Experience" },
   { href: "#Projects", text: "Projects" },
+  { href: "#Music", text: "Music" },
   { href: "#Contact", text: "Contact" },
   {
     href: RESUME_LINK,
