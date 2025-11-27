@@ -1,4 +1,5 @@
 import { RoughNotation } from "react-rough-notation";
+import { heroContent } from "../../data/content";
 
 /**
  * A component that renders the hero section.
@@ -10,7 +11,7 @@ export default function Hero() {
       className="px-8 lg:px-36 flex justify-center  text-center flex-col items-center min-h-[85vh] py-24"
     >
       <h1 className="text-6xl leading-snug font-bold pb-4">
-        Hi, my name is{" "}
+        {heroContent.greeting}{" "}
         <span className="text-custom-blue">
           <RoughNotation
             type="underline"
@@ -20,14 +21,13 @@ export default function Hero() {
             strokeWidth={3}
             multiline={true}
           >
-            Alan Khalili
+            {heroContent.name}
           </RoughNotation>
         </span>
-        👋
+        {heroContent.emoji}
       </h1>
       <h2 className="text-xl leading-loose">
-        It&apos;s my last year at The University of Tennessee studying Computer
-        Science!{" "}
+        {heroContent.intro}{" "}
         <RoughNotation
           type="highlight"
           iterations={1}
@@ -37,9 +37,9 @@ export default function Hero() {
           animationDuration={1000}
           multiline={true}
         >
-          I love coding, coffee, and keyboards!
+          {heroContent.highlight}
         </RoughNotation>{" "}
-        Always on the lookout for new, exciting opportunities! Feel free to{" "}
+        {heroContent.callToAction}{" "}
         <RoughNotation
           type="circle"
           show={true}
@@ -48,7 +48,7 @@ export default function Hero() {
           multiline={true}
         >
           <a className="underline" href="#Contact">
-            reach out
+            {heroContent.linkText}
           </a>
         </RoughNotation>
       </h2>

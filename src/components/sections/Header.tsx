@@ -2,7 +2,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
-import { RESUME_LINK } from "../../constants";
+import { menuItems } from "../../data/content";
 
 /**
  * A component that renders the header section.
@@ -21,17 +21,6 @@ export default function Header() {
   }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
-
-  const menuItems = [
-    { href: "#Experience", text: "Experience" },
-    { href: "#Projects", text: "Projects" },
-    { href: "#Contact", text: "Contact" },
-    {
-      href: RESUME_LINK,
-      text: "Resume",
-      isExternal: true,
-    },
-  ];
 
   return (
     <div

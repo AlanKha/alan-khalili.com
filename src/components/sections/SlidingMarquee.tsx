@@ -1,27 +1,11 @@
-import { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
-
-/**
- * An interface for a GitHub repository.
- */
-interface GitHubRepo {
-  id: number;
-  name: string;
-  private: boolean;
-  language: string | null;
-}
+import { useGithubRepos } from "../../hooks/useGithubRepos";
 
 /**
  * A component that renders a sliding marquee of GitHub repositories.
  */
 export default function SlidingMarquee() {
-  const [repos, setRepos] = useState<GitHubRepo[]>([]);
-
-  useEffect(() => {
-    fetch("https://api.github.com/users/AlanKha/repos")
-      .then((res) => res.json())
-      .then((data: GitHubRepo[]) => setRepos(data));
-  }, []);
+  const { repos } = useGithubRepos("AlanKha");
 
   return (
     <div className="my-0 flex text-black text-2xl bg-linear-to-b from-transparent to-custom-ivory via-custom-ivory overflow-hidden">

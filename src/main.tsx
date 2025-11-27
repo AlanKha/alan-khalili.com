@@ -4,17 +4,20 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./assets/styles/global.css";
 import App from "./App.tsx";
 import ExternalRedirect from "./components/ExternalRedirect";
-import { RESUME_LINK } from "./constants";
+import { RESUME_LINK } from "./data/content";
 import NotFound from "./pages/NotFound.tsx";
+import ImagePreloader from "./components/ImagePreloader.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/resume" element={<ExternalRedirect to={RESUME_LINK} />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <ImagePreloader>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/resume" element={<ExternalRedirect to={RESUME_LINK} />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </ImagePreloader>
   </StrictMode>
 );
