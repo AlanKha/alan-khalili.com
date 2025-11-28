@@ -5,6 +5,7 @@ import Experience from "./components/sections/Experience";
 import Projects from "./components/sections/Projects";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/sections/Footer";
+import Music from "./components/sections/Music";
 import { Analytics } from "@vercel/analytics/react";
 
 /**
@@ -22,6 +23,7 @@ function App() {
       <Projects />
       <Contact />
       <Footer />
+      <Music />
     </>
   );
 }

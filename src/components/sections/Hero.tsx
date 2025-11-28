@@ -1,6 +1,5 @@
 import { RoughNotation } from "react-rough-notation";
 import { heroContent } from "../../data/content";
-import Music from "./Music";
 
 /**
  * A component that renders the hero section.
@@ -54,7 +53,6 @@ export default function Hero() {
             </a>
           </RoughNotation>
         </h2>
-        <Music />
       </div>
     </>
   );

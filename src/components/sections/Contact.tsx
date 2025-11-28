@@ -6,11 +6,8 @@ import { useState } from "react";
 interface ContactState {
   name: string;
   email: string;
-  subject: string;
   honeypot: string;
   message: string;
-  replyTo: string;
-  accessKey: string;
 }
 
 /**
@@ -21,18 +18,12 @@ interface ResponseState {
   message: string;
 }
 
-/**
- * A component that renders a contact form.
- */
 export default function Contact() {
   const [contact, setContact] = useState<ContactState>({
     name: "",
     email: "",
-    subject: "Contact Form",
     honeypot: "",
     message: "",
-    replyTo: "@",
-    accessKey: import.meta.env.VITE_ACCESS_KEY,
   });
 
   const [response, setResponse] = useState<ResponseState>({
@@ -40,24 +31,22 @@ export default function Contact() {
     message: "",
   });
 
-  /**
-   * Handles changes to the form fields.
-   * @param e The change event.
-   */
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
 
-  /**
-   * Handles the form submission.
-   * @param e The form event.
-   */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
+
     try {
-      const res = await fetch("https://api.staticforms.xyz/submit", {
+      const apiUrl = import.meta.env.VITE_API_URL;
+
+      const res = await fetch(apiUrl, {
         method: "POST",
         body: JSON.stringify(contact),
         headers: { "Content-Type": "application/json" },
@@ -65,23 +54,27 @@ export default function Contact() {
 
       const json = await res.json();
 
-      if (json.message === "Form submitted successfully") {
+      if (res.ok) {
         setResponse({
           type: "success",
-          message: json.message,
+          message: "Message sent successfully!",
         });
+        // Optional: Reset form
+        setContact({ name: "", email: "", message: "", honeypot: "" });
       } else {
         setResponse({
           type: "error",
-          message: json.message,
+          message: json.message || "Failed to send message.",
         });
       }
-    } catch (e) {
-      console.log("An error occurred", e);
+    } catch (error) {
+      console.error("An error occurred", error);
       setResponse({
         type: "error",
         message: "An error occurred while submitting the form.",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -100,28 +93,19 @@ export default function Contact() {
         </div>
       )}
 
-      {!response.message && (
+      {/* Hide form on success if desired, or leave it to allow multiple sends */}
+      {response.type !== "success" && (
         <form onSubmit={handleSubmit}>
+          {/* Honeypot Field - hidden from users but visible to bots */}
           <input
-            type="hidden"
-            name="accessKey"
-            value={contact.accessKey}
-            aria-label="Access Key"
-          />
-          <input
-            type="hidden"
-            name="subject"
-            value={contact.subject}
-            onChange={handleChange}
-            aria-label="Subject"
-          />
-          <input
-            type="hidden"
+            type="text"
             name="honeypot"
             value={contact.honeypot}
             onChange={handleChange}
             className="hidden"
-            aria-label="Honeypot"
+            style={{ display: "none" }}
+            aria-hidden="true"
+            autoComplete="off"
           />
 
           <div className="grid md:grid-cols-2 gap-4 w-full py-2">
@@ -175,9 +159,10 @@ export default function Contact() {
 
           <button
             type="submit"
-            className="cursor-pointer rounded-lg bg-custom-green border-2 border-green-900 text-custom-ivory mt-4 w-full p-4"
+            disabled={isLoading}
+            className="cursor-pointer rounded-lg bg-custom-green border-2 border-green-900 text-custom-ivory mt-4 w-full p-4 disabled:opacity-50"
           >
-            Send Message
+            {isLoading ? "Sending..." : "Send Message"}
           </button>
         </form>
       )}
