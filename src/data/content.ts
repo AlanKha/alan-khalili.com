@@ -104,7 +104,6 @@ export const musicContent = {
 export const menuItems = [
   { href: "#Experience", text: "Experience" },
   { href: "#Projects", text: "Projects" },
-  { href: "#Music", text: "Music" },
   { href: "#Contact", text: "Contact" },
   {
     href: RESUME_LINK,
