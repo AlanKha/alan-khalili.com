@@ -7,14 +7,19 @@ import ExternalRedirect from "./components/ExternalRedirect";
 import { RESUME_LINK } from "./data/content";
 import NotFound from "./pages/NotFound.tsx";
 import ImagePreloader from "./components/ImagePreloader.tsx";
+import Snowfall from "react-snowfall";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ImagePreloader>
       <BrowserRouter>
+        <Snowfall />
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="/resume" element={<ExternalRedirect to={RESUME_LINK} />} />
+          <Route
+            path="/resume"
+            element={<ExternalRedirect to={RESUME_LINK} />}
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
