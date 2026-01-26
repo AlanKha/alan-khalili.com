@@ -12,8 +12,8 @@ export default function Experience() {
       className="bg-none bg-custom-ivory text-black"
     >
       <SectionHeader title="Experience" />
-      {experiences.map((experience, index) => (
-        <Card key={index} {...experience} />
+      {experiences.map((experience) => (
+        <Card key={experience.id} {...experience} />
       ))}
     </Section>
   );

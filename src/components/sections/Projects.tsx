@@ -12,8 +12,8 @@ export default function Projects() {
       className="bg-custom-ivory text-black pb-32"
     >
       <SectionHeader title="Projects" />
-      {projects.map((project, index) => (
-        <Card key={index} {...project} />
+      {projects.map((project) => (
+        <Card key={project.id} {...project} />
       ))}
     </Section>
   );

@@ -5,6 +5,7 @@ import { motion } from "motion/react";
  * The props for the Card component.
  */
 interface CardProps {
+  id?: string;
   imageSrc: string;
   imageAlt: string;
   title: string;
@@ -49,13 +50,13 @@ export default function Card({
           />
         </div>
         <div className="w-full md:w-[80%] px-2 flex flex-col gap-1 justify-end">
-          <a href={link} target="_blank" className="text-xl font-semibold">
+          <a href={link} target="_blank" rel="noopener noreferrer" className="text-xl font-semibold">
             {title}
           </a>
           <h3 className="text-lg">{description}</h3>
         </div>
         {githubLink && (
-          <div className="invisible md:visible w-full md:w-16 ml-auto flex items-center justify-end">
+          <div className="hidden md:flex w-full md:w-16 ml-auto flex items-center justify-end">
             <a href={githubLink} target="_blank" rel="noopener noreferrer">
               <AiFillGithub className="text-3xl" size={50} />
             </a>

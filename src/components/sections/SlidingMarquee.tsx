@@ -5,7 +5,11 @@ import { useGithubRepos } from "../../hooks/useGithubRepos";
  * A component that renders a sliding marquee of GitHub repositories.
  */
 export default function SlidingMarquee() {
-  const { repos } = useGithubRepos("AlanKha");
+  const { repos, error } = useGithubRepos("AlanKha");
+
+  if (error || !repos || repos.length === 0) {
+    return null;
+  }
 
   return (
     <div className="my-0 flex text-black text-2xl bg-linear-to-b from-transparent to-custom-ivory via-custom-ivory overflow-hidden">

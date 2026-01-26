@@ -16,6 +16,7 @@ export const ASSETS = {
 };
 
 export interface ExperienceItem {
+  id: string;
   imageSrc: string;
   imageAlt: string;
   title: string;
@@ -24,6 +25,7 @@ export interface ExperienceItem {
 }
 
 export interface ProjectItem {
+  id: string;
   imageSrc: string;
   imageAlt: string;
   title: string;
@@ -34,6 +36,7 @@ export interface ProjectItem {
 
 export const experiences: ExperienceItem[] = [
   {
+    id: "walmart-intern",
     imageSrc:
       "https://2tbvn4haj0.ufs.sh/f/jTupBFNKiwOdbyPUSsW8K4koVYbBQRTlniSfmwzOyZ37FEht",
     imageAlt: "Walmart logo",
@@ -43,6 +46,7 @@ export const experiences: ExperienceItem[] = [
     link: "https://walmart.com/",
   },
   {
+    id: "hack4impact-director",
     imageSrc:
       "https://2tbvn4haj0.ufs.sh/f/jTupBFNKiwOdi4mlgNTk8Jzg2tHIWo7UcKfeSRpLaDwkvBGx",
     imageAlt: "Hack4Impact logo",
@@ -52,6 +56,7 @@ export const experiences: ExperienceItem[] = [
     link: "https://utk.hack4impact.org/",
   },
   {
+    id: "utk-research",
     imageSrc:
       "https://2tbvn4haj0.ufs.sh/f/jTupBFNKiwOdqIcvNI3oG3Dmfe0pcas4OESBkTqy7ZlQbtPd",
     imageAlt: "University of Tennessee logo",
@@ -64,6 +69,7 @@ export const experiences: ExperienceItem[] = [
 
 export const projects: ProjectItem[] = [
   {
+    id: "st-christophers-fund",
     imageSrc:
       "https://2tbvn4haj0.ufs.sh/f/jTupBFNKiwOdcRbej9Xly7KdRxX4tiC2wkPnsvJcS9ZEzoWI",
     imageAlt: "St. Christopher's Fund logo",
@@ -74,6 +80,7 @@ export const projects: ProjectItem[] = [
     githubLink: "https://github.com/hack4impact-utk/st-christophers-fund",
   },
   {
+    id: "geekhack-reimagined",
     imageSrc:
       "https://2tbvn4haj0.ufs.sh/f/jTupBFNKiwOdEASBfigjC0lcn14ZKXYTafLu3g6RbB8oJyDH",
     imageAlt: "Geekhack Logo",
@@ -84,6 +91,7 @@ export const projects: ProjectItem[] = [
     githubLink: "https://github.com/AlanKha/GeekHack-Reimagined",
   },
   {
+    id: "mission-of-hope",
     imageSrc:
       "https://2tbvn4haj0.ufs.sh/f/jTupBFNKiwOdpVTH5hPNpbdSjuwPJhY9exT1OlBkRgZUmKQy",
     imageAlt: "Donation Box Gif",
