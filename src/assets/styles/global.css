@@ -1,11 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-custom-brown: #896043;
-  --color-custom-ivory: #fbfff1;
-  --color-custom-green: #73937e;
+  --font-serif: "Instrument Serif", serif;
+  --font-sans: "DM Sans", sans-serif;
+
+  --color-custom-brown: #A65D37;
+  --color-custom-ivory: #F9F7F1;
+  --color-custom-green: #2A332B;
   --color-custom-red: #ef4444;
-  --color-custom-black: #000000;
+  --color-custom-black: #18181B;
   --color-custom-blue: #60a5fa;
   --color-custom-yellow: #bf9002;
 
@@ -16,5 +19,32 @@
 
 :root {
   scroll-behavior: smooth;
-  @apply text-custom-ivory bg-custom-brown bg-noise-light;
+  --color-surface: #ffffff; /* White surface for cards/boxes in light mode */
+  
+  @apply text-custom-black bg-custom-ivory font-sans transition-colors duration-300;
+}
+
+.mask-marquee {
+  mask-image: var(--background-image-marquee-banner);
+  mask-repeat: repeat-x;
+  mask-size: contain;
+  -webkit-mask-image: var(--background-image-marquee-banner);
+  -webkit-mask-repeat: repeat-x;
+  -webkit-mask-size: contain;
+}
+
+::selection {
+  @apply bg-custom-brown text-custom-ivory;
+}
+
+:root.dark {
+  --color-custom-ivory: #18181b; /* Dark background */
+  --color-custom-black: #F9F7F1; /* Light text */
+  --color-custom-brown: #d97746; /* Brighter accent */
+  --color-custom-green: #8DA995; /* Brighter secondary */
+  --color-custom-red: #f87171;
+  --color-custom-blue: #93c5fd;
+  --color-custom-yellow: #eab308;
+  
+  --color-surface: #18181b; /* Dark surface for cards/boxes to match bg */
 }

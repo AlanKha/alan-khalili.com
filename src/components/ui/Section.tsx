@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { motion } from "motion/react";
 
 interface SectionProps {
   id?: string;
@@ -8,12 +9,16 @@ interface SectionProps {
 
 export function Section({ id, className = "", children }: SectionProps) {
   return (
-    <section
+    <motion.section
       id={id}
-      className={`px-8 lg:px-36 py-16 ${className}`}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className={`px-6 lg:px-36 py-24 ${className}`}
     >
       {children}
-    </section>
+    </motion.section>
   );
 }
 
@@ -24,8 +29,12 @@ interface SectionHeaderProps {
 
 export function SectionHeader({ title, className = "" }: SectionHeaderProps) {
   return (
-    <div className={`pt-12 px-3 text-2xl flex justify-between border-b pb-2 border-black ${className}`}>
-      <h1>{title}</h1>
+    <div className={`mb-16 flex items-center gap-4 ${className}`}>
+      <h2 className="font-serif text-5xl md:text-6xl italic text-custom-black relative inline-block">
+        {title}
+        <span className="absolute -bottom-2 left-0 w-full h-1 bg-custom-brown"></span>
+      </h2>
+      <div className="h-[2px] bg-custom-black/10 flex-grow ml-4 rounded-full"></div>
     </div>
   );
 }

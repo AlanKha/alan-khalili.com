@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { SectionHeader } from "../ui/Section";
 
 /**
  * The state of the contact form.
@@ -79,23 +80,25 @@ export default function Contact() {
   };
 
   return (
-    <div id="Contact" className="px-8 lg:px-36 p-4 py-16">
-      <h1 className="py-4 text-4xl font-bold text-center">Contact</h1>
+    <div id="Contact" className="px-6 lg:px-36 p-4 py-24 bg-custom-ivory">
+      <SectionHeader title="Contact" />
 
       {response.type === "success" && (
-        <div className="text-center bg-custom-green text-custom-ivory p-4 rounded-lg">
-          {response.message}
+        <div className="text-center bg-custom-green text-custom-ivory p-6 border-2 border-custom-black shadow-[4px_4px_0px_0px_var(--color-custom-black)] mb-8">
+          <h3 className="font-serif text-2xl italic">Sent!</h3>
+          <p>{response.message}</p>
         </div>
       )}
       {response.type === "error" && (
-        <div className="text-center bg-custom-red text-custom-ivory p-4 rounded-lg">
-          {response.message}
+        <div className="text-center bg-custom-red text-custom-ivory p-6 border-2 border-custom-black shadow-[4px_4px_0px_0px_var(--color-custom-black)] mb-8">
+           <h3 className="font-serif text-2xl italic">Error</h3>
+          <p>{response.message}</p>
         </div>
       )}
 
       {/* Hide form on success if desired, or leave it to allow multiple sends */}
       {response.type !== "success" && (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto">
           {/* Honeypot Field - hidden from users but visible to bots */}
           <input
             type="text"
@@ -108,16 +111,16 @@ export default function Contact() {
             autoComplete="off"
           />
 
-          <div className="grid md:grid-cols-2 gap-4 w-full py-2">
+          <div className="grid md:grid-cols-2 gap-8 w-full py-2">
             <div className="flex flex-col">
-              <label htmlFor="name" className="uppercase text-sm py-2">
+              <label htmlFor="name" className="uppercase text-sm font-bold tracking-widest py-2 text-custom-black">
                 Name
               </label>
               <input
                 type="text"
                 id="name"
                 name="name"
-                className="bg-custom-ivory border-2 rounded-lg p-3 flex border-gray-300 text-black"
+                className="bg-[var(--color-surface)] border-2 border-custom-black p-3 text-custom-black focus:outline-none focus:shadow-[4px_4px_0px_0px_var(--color-custom-black)] transition-shadow"
                 value={contact.name}
                 onChange={handleChange}
                 required
@@ -125,14 +128,14 @@ export default function Contact() {
               />
             </div>
             <div className="flex flex-col">
-              <label htmlFor="email" className="uppercase text-sm py-2">
+              <label htmlFor="email" className="uppercase text-sm font-bold tracking-widest py-2 text-custom-black">
                 Email
               </label>
               <input
                 type="email"
                 id="email"
                 name="email"
-                className="bg-custom-ivory border-2 rounded-lg p-3 flex border-gray-300 text-black"
+                className="bg-[var(--color-surface)] border-2 border-custom-black p-3 text-custom-black focus:outline-none focus:shadow-[4px_4px_0px_0px_var(--color-custom-black)] transition-shadow"
                 value={contact.email}
                 onChange={handleChange}
                 required
@@ -141,15 +144,15 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="flex flex-col py-2">
-            <label htmlFor="message" className="uppercase text-sm py-2">
+          <div className="flex flex-col py-6">
+            <label htmlFor="message" className="uppercase text-sm font-bold tracking-widest py-2 text-custom-black">
               Message
             </label>
             <textarea
-              className="bg-custom-ivory border-2 rounded-lg p-3 border-gray-300 text-black"
+              className="bg-[var(--color-surface)] border-2 border-custom-black p-3 text-custom-black focus:outline-none focus:shadow-[4px_4px_0px_0px_var(--color-custom-black)] transition-shadow"
               name="message"
               id="message"
-              rows={10}
+              rows={8}
               value={contact.message}
               onChange={handleChange}
               required
@@ -160,7 +163,7 @@ export default function Contact() {
           <button
             type="submit"
             disabled={isLoading}
-            className="cursor-pointer rounded-lg bg-custom-green border-2 border-green-900 text-custom-ivory mt-4 w-full p-4 disabled:opacity-50"
+            className="cursor-pointer bg-custom-black text-custom-ivory border-2 border-custom-black p-4 font-bold uppercase tracking-widest hover:bg-[var(--color-surface)] hover:text-custom-black hover:shadow-[6px_6px_0px_0px_var(--color-custom-black)] transition-all w-full mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? "Sending..." : "Send Message"}
           </button>

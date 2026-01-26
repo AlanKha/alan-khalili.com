@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { musicContent } from "../../data/content";
+import { BsMusicNoteBeamed, BsX } from "react-icons/bs";
 
 /**
  * A sticky component that renders the Apple Music embed with show/hide functionality.
@@ -10,80 +11,74 @@ export default function Music() {
 
   return (
     <div
-      className="fixed bottom-4 right-4 z-50 flex flex-col items-end"
+      className="fixed bottom-6 right-6 z-50 flex flex-col items-end"
       id="Music"
     >
-      {/* Music Player Container - always rendered for preloading */}
+      {/* Music Player Container */}
       <div
-        className={`absolute bottom-14 right-0 w-[700px] max-w-[calc(100vw-2rem)] transition-all duration-500 ease-in-out ${
+        className={`absolute bottom-20 right-0 w-[350px] md:w-[450px] max-w-[calc(100vw-3rem)] transition-all duration-500 cubic-bezier(0.175, 0.885, 0.32, 1.275) origin-bottom-right ${
           isVisible
-            ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 translate-y-4 pointer-events-none"
+            ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 scale-90 translate-y-8 pointer-events-none"
         }`}
       >
-        <div className="w-full flex justify-center relative bg-custom-brown/95 backdrop-blur-sm rounded-xl p-4 pb-2 md:pb-4 shadow-2xl border border-custom-ivory/20">
-          {isLoading && (
-            <div className="absolute inset-0 flex items-center justify-center z-0 rounded-lg">
-              <div className="w-full max-w-[660px] animate-pulse rounded-xl flex items-center justify-center">
-                <span className="text-white/50 font-mono text-sm">
-                  Loading Music...
-                </span>
-              </div>
+        <div className="bg-custom-ivory border-2 border-custom-black p-2 shadow-[8px_8px_0px_0px_var(--color-custom-black)]">
+          <div className="flex justify-between items-center mb-2 px-1">
+            <h3 className="font-serif italic text-xl text-custom-black">
+              Now Playing
+            </h3>
+            <div className="flex gap-1">
+               <span className="w-2 h-2 bg-custom-black rounded-full animate-bounce delay-100"></span>
+               <span className="w-2 h-2 bg-custom-black rounded-full animate-bounce delay-200"></span>
+               <span className="w-2 h-2 bg-custom-black rounded-full animate-bounce delay-300"></span>
             </div>
-          )}
-          <iframe
-            onLoad={() => setTimeout(() => setIsLoading(false), 2000)}
-            allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
-            height="450"
-            width="100%"
-            className={`w-full max-w-[660px] overflow-hidden bg-transparent transition-opacity duration-500 relative z-10 rounded-lg ${
-              isLoading ? "opacity-0" : "opacity-100"
-            }`}
-            sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-            src={musicContent.playlistUrl}
-            title={musicContent.title}
-          ></iframe>
+          </div>
+          
+          <div className="relative w-full h-[152px] bg-custom-black/5">
+             {isLoading && (
+              <div className="absolute inset-0 flex items-center justify-center z-0">
+                <p className="font-mono text-xs uppercase tracking-widest text-custom-black/50 animate-pulse">
+                  Loading...
+                </p>
+              </div>
+            )}
+            <iframe
+              onLoad={() => setTimeout(() => setIsLoading(false), 2000)}
+              allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+              height="152"
+              width="100%"
+              className={`w-full overflow-hidden bg-transparent relative z-10 ${
+                isLoading ? "opacity-0" : "opacity-100"
+              } transition-opacity duration-500`}
+              sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+              src={musicContent.playlistUrl}
+              title={musicContent.title}
+            ></iframe>
+          </div>
         </div>
       </div>
 
-      {/* Toggle Button with Fun Text */}
-      <div className="flex flex-col items-end gap-2">
+      {/* Toggle Button & Tooltip */}
+      <div className="flex flex-col items-end gap-3">
         {!isVisible && (
-          <div className="bg-custom-green/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg border border-custom-ivory/20 animate-pulse">
-            <p className="text-custom-ivory text-xs font-mono whitespace-nowrap">
-              🎵 Wanna see what I'm listening to? 🎵
+          <div className="bg-[var(--color-surface)] border-2 border-custom-black px-4 py-2 shadow-[4px_4px_0px_0px_var(--color-custom-black)] hidden md:block">
+            <p className="text-custom-black text-xs font-bold uppercase tracking-widest whitespace-nowrap">
+              Soundtrack
             </p>
           </div>
         )}
         <button
           onClick={() => setIsVisible(!isVisible)}
-          className="w-12 h-12 rounded-full bg-custom-green hover:bg-custom-green/80 text-custom-ivory flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+          className={`w-14 h-14 bg-custom-black text-custom-ivory border-2 border-custom-black flex items-center justify-center shadow-[4px_4px_0px_0px_var(--color-custom-ivory)] hover:shadow-[2px_2px_0px_0px_var(--color-custom-ivory)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 group overflow-hidden relative`}
           aria-label={isVisible ? "Hide Music Player" : "Show Music Player"}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className={`w-6 h-6 transition-transform duration-300 ${
-              isVisible ? "rotate-180" : ""
-            }`}
-          >
-            {isVisible ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5"
-              />
+          <div className="relative z-10">
+             {isVisible ? (
+              <BsX className="w-8 h-8 group-hover:rotate-90 transition-transform duration-300" />
             ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4.5 15.75l7.5-7.5 7.5 7.5"
-              />
+              <BsMusicNoteBeamed className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
             )}
-          </svg>
+          </div>
         </button>
       </div>
     </div>

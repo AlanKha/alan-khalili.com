@@ -13,7 +13,15 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ImagePreloader>
       <BrowserRouter>
-        <Snowfall />
+        <Snowfall
+          style={{
+            position: "fixed",
+            width: "100vw",
+            height: "100vh",
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        />
         <Routes>
           <Route path="/" element={<App />} />
           <Route
@@ -24,5 +32,5 @@ createRoot(document.getElementById("root")!).render(
         </Routes>
       </BrowserRouter>
     </ImagePreloader>
-  </StrictMode>
+  </StrictMode>,
 );

@@ -6,54 +6,61 @@ import { heroContent } from "../../data/content";
  */
 export default function Hero() {
   return (
-    <>
-      <div
-        id="Hero"
-        className="px-8 lg:px-36 flex justify-center  text-center flex-col items-center min-h-[85vh] py-24"
-      >
-        <h1 className="text-6xl leading-snug font-bold pb-4">
-          {heroContent.greeting}{" "}
-          <span className="text-custom-blue">
+    <div
+      id="Hero"
+      className="px-6 lg:px-36 flex justify-center text-center flex-col items-center min-h-[90vh] py-32 bg-custom-ivory relative overflow-hidden"
+    >
+      {/* Decorative background element could go here */}
+      
+      <div className="max-w-4xl z-10">
+        <h1 className="text-5xl md:text-8xl leading-[1.1] font-medium pb-8 text-custom-black">
+          <span className="font-serif italic block mb-2">{heroContent.greeting}</span>
+          <span className="font-sans font-bold tracking-tight text-custom-black relative inline-block">
             <RoughNotation
-              type="underline"
+              type="highlight"
               show={true}
               animationDelay={500}
-              color="var(--color-custom-ivory)"
-              strokeWidth={3}
+              color="var(--color-custom-brown)"
+              padding={[0, 10, 0, 10]}
               multiline={true}
+              iterations={2}
             >
-              {heroContent.name}
+              <span className="text-custom-ivory px-2">{heroContent.name}</span>
             </RoughNotation>
           </span>
-          {heroContent.emoji}
+          <span className="ml-4 align-top text-6xl md:text-8xl transform rotate-12 inline-block origin-bottom-left hover:animate-pulse cursor-default">
+            {heroContent.emoji}
+          </span>
         </h1>
-        <h2 className="text-xl leading-loose">
+        
+        <h2 className="text-xl md:text-3xl leading-relaxed font-serif text-custom-black/80 max-w-2xl mx-auto mt-8">
           {heroContent.intro}{" "}
-          <RoughNotation
-            type="highlight"
-            iterations={1}
-            show={true}
-            color="var(--color-custom-yellow)"
-            animationDelay={2000}
-            animationDuration={1000}
-            multiline={true}
-          >
-            {heroContent.highlight}
-          </RoughNotation>{" "}
-          {heroContent.callToAction}{" "}
-          <RoughNotation
-            type="circle"
-            show={true}
-            color="var(--color-custom-ivory)"
-            animationDelay={4000}
-            multiline={true}
-          >
-            <a className="underline" href="#Contact">
-              {heroContent.linkText}
-            </a>
-          </RoughNotation>
+          <span className="whitespace-nowrap">
+            <RoughNotation
+              type="underline"
+              iterations={3}
+              show={true}
+              strokeWidth={2}
+              color="var(--color-custom-green)"
+              animationDelay={2000}
+              animationDuration={1500}
+            >
+              {heroContent.highlight}
+            </RoughNotation>
+          </span>{" "}
+          <span className="block mt-4">{heroContent.callToAction}</span>
         </h2>
+
+        <div className="mt-12">
+           <a 
+             className="group relative inline-block text-2xl font-bold uppercase tracking-widest hover:text-custom-brown transition-colors" 
+             href="#Contact"
+           >
+            {heroContent.linkText}
+            <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-custom-black group-hover:bg-custom-brown transition-colors"></span>
+           </a>
+        </div>
       </div>
-    </>
+    </div>
   );
 }

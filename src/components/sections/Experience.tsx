@@ -13,7 +13,7 @@ export default function Experience() {
     >
       <SectionHeader title="Experience" />
       {experiences.map((experience) => (
-        <Card key={experience.id} {...experience} />
+        <Card key={experience.id} {...experience} ctaText="View Company" />
       ))}
     </Section>
   );
