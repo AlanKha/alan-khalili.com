@@ -1,9 +1,7 @@
 import { AiFillGithub } from "react-icons/ai";
 import { motion } from "motion/react";
+import { HiArrowUpRight } from "react-icons/hi2";
 
-/**
- * The props for the Card component.
- */
 interface CardProps {
   id?: string;
   imageSrc: string;
@@ -15,16 +13,6 @@ interface CardProps {
   ctaText?: string;
 }
 
-/**
- * A component that renders a card with an image, title, description, and links.
- * @param imageSrc The source of the image.
- * @param imageAlt The alt text for the image.
- * @param title The title of the card.
- * @param description The description of the card.
- * @param link The link to the project.
- * @param githubLink The link to the project's GitHub repository.
- * @param ctaText Optional text for the call-to-action button.
- */
 export default function Card({
   imageSrc,
   imageAlt,
@@ -32,35 +20,39 @@ export default function Card({
   description,
   link,
   githubLink,
-  ctaText = "Visit Website",
+  ctaText = "View Project",
 }: CardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
+    <motion.article
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.6,
-        ease: "easeOut",
-      }}
+      transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
       viewport={{ once: true, margin: "-50px" }}
-      className="w-full"
+      className="group relative mb-12"
     >
-      <div className="bg-[var(--color-surface)] border-2 border-custom-black p-6 mb-8 shadow-[6px_6px_0px_0px_var(--color-custom-black)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[3px_3px_0px_0px_var(--color-custom-black)] flex flex-col md:flex-row gap-6 items-start">
+      <div className="grid md:grid-cols-[240px_1fr] gap-6 md:gap-8 items-start">
         {/* Image Container */}
-        <div className="w-full md:w-48 shrink-0">
-          <div className="border border-custom-black p-2 bg-custom-ivory">
+        <div className="relative overflow-hidden">
+          <div className="aspect-[4/3] bg-[var(--surface)] border border-[var(--border)]/10 overflow-hidden relative">
             <img
               src={imageSrc}
               alt={imageAlt}
-              className="w-full h-32 object-contain bg-[var(--color-surface)]"
+              className="w-full h-full object-contain p-6 transition-transform duration-700 group-hover:scale-105"
             />
+            {/* Subtle gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          </div>
+          {/* Corner accent */}
+          <div className="absolute -top-1 -right-1 w-6 h-6">
+            <div className="absolute top-0 right-0 w-full h-[2px] bg-[var(--accent)] origin-right scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+            <div className="absolute top-0 right-0 w-[2px] h-full bg-[var(--accent)] origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300 delay-100" />
           </div>
         </div>
 
         {/* Content Container */}
-        <div className="flex flex-col flex-grow gap-3">
-          <div className="flex justify-between items-start">
-            <h3 className="font-serif text-3xl italic font-medium text-custom-black leading-tight">
+        <div className="flex flex-col h-full py-2">
+          <div className="flex items-start justify-between gap-4 mb-4">
+            <h3 className="font-display text-3xl md:text-4xl tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors duration-300">
               {title}
             </h3>
             {githubLink && (
@@ -68,39 +60,34 @@ export default function Card({
                 href={githubLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden md:block text-custom-black hover:text-custom-brown transition-colors"
+                className="shrink-0 w-10 h-10 border border-[var(--border)]/20 flex items-center justify-center text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all duration-300"
+                aria-label="View on GitHub"
               >
-                <AiFillGithub size={32} />
+                <AiFillGithub size={20} />
               </a>
             )}
           </div>
-          
-          <p className="font-sans text-custom-black/80 leading-relaxed text-lg">
+
+          <p className="text-[var(--text-secondary)] leading-relaxed text-lg mb-6 flex-grow">
             {description}
           </p>
 
-          <div className="mt-auto pt-4 flex items-center gap-4">
+          <div className="flex items-center gap-6 pt-4 border-t border-[var(--border)]/10">
             <a
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-custom-black text-custom-ivory px-6 py-2 font-bold uppercase tracking-wider text-sm border-2 border-transparent hover:bg-transparent hover:text-custom-black hover:border-custom-black transition-all"
+              className="group/btn inline-flex items-center gap-2 font-mono text-sm uppercase tracking-widest text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors"
             >
-              {ctaText}
+              <span>{ctaText}</span>
+              <HiArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
             </a>
-            {githubLink && (
-              <a
-                href={githubLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="md:hidden text-custom-black hover:text-custom-brown"
-              >
-                <AiFillGithub size={32} />
-              </a>
-            )}
           </div>
         </div>
       </div>
-    </motion.div>
+
+      {/* Decorative line */}
+      <div className="absolute -bottom-6 left-0 right-0 h-[1px] bg-gradient-to-r from-[var(--border)]/20 via-[var(--border)]/5 to-transparent" />
+    </motion.article>
   );
 }

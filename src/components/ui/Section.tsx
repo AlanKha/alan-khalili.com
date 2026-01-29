@@ -11,11 +11,11 @@ export function Section({ id, className = "", children }: SectionProps) {
   return (
     <motion.section
       id={id}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className={`px-6 lg:px-36 py-24 ${className}`}
+      transition={{ duration: 0.7, ease: [0.33, 1, 0.68, 1] }}
+      className={`px-6 lg:px-24 xl:px-36 py-24 bg-[var(--bg-primary)] ${className}`}
     >
       {children}
     </motion.section>
@@ -24,17 +24,33 @@ export function Section({ id, className = "", children }: SectionProps) {
 
 interface SectionHeaderProps {
   title: string;
+  subtitle?: string;
   className?: string;
 }
 
-export function SectionHeader({ title, className = "" }: SectionHeaderProps) {
+export function SectionHeader({ title, subtitle, className = "" }: SectionHeaderProps) {
   return (
-    <div className={`mb-16 flex items-center gap-4 ${className}`}>
-      <h2 className="font-serif text-5xl md:text-6xl italic text-custom-black relative inline-block">
+    <div className={`mb-16 ${className}`}>
+      <div className="flex items-center gap-4 mb-6">
+        <motion.span
+          initial={{ width: 0 }}
+          whileInView={{ width: "2.5rem" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="h-[1px] bg-[var(--accent)]"
+        />
+        <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--accent)]">
+          Section
+        </span>
+      </div>
+      <h2 className="font-display text-5xl md:text-6xl lg:text-7xl tracking-tight text-[var(--text-primary)]">
         {title}
-        <span className="absolute -bottom-2 left-0 w-full h-1 bg-custom-brown"></span>
       </h2>
-      <div className="h-[2px] bg-custom-black/10 flex-grow ml-4 rounded-full"></div>
+      {subtitle && (
+        <p className="mt-6 text-lg text-[var(--text-secondary)] max-w-xl leading-relaxed">
+          {subtitle}
+        </p>
+      )}
     </div>
   );
 }

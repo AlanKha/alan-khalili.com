@@ -1,9 +1,7 @@
 import Marquee from "react-fast-marquee";
+import { motion } from "motion/react";
 import { useGithubRepos } from "../../hooks/useGithubRepos";
 
-/**
- * A component that renders a sliding marquee of GitHub repositories.
- */
 export default function SlidingMarquee() {
   const { repos, error } = useGithubRepos("AlanKha");
 
@@ -12,31 +10,45 @@ export default function SlidingMarquee() {
   }
 
   return (
-    <div className="my-0 flex text-custom-black text-2xl bg-linear-to-b from-transparent to-custom-ivory via-custom-ivory overflow-hidden">
-      <div className="h-32 flex items-center justify-center w-full relative">
-        {/* Masked Border Layer */}
-        <div className="absolute inset-0 w-full h-full mask-marquee bg-custom-brown pointer-events-none opacity-20 dark:opacity-40"></div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="relative py-8 bg-[var(--bg-secondary)] overflow-hidden"
+    >
+      {/* Top border accent */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--accent)]/30 to-transparent" />
 
-        <Marquee pauseOnHover={true} delay={1}>
+      {/* Marquee with gradient masks */}
+      <div className="relative mask-marquee">
+        <Marquee pauseOnHover speed={40} gradient={false}>
           {repos
-            .filter((repo) => !repo.private) // Filter out private repositories
+            .filter((repo) => !repo.private)
             .map((repo) => (
               <a
                 key={repo.id}
                 href={`https://github.com/AlanKha/${repo.name}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="group inline-flex items-center mx-8"
               >
-                <span className="mx-6 ">
-                  {repo.name}{" "}
-                  <span className="text-sm">
-                    {repo.language ? `(${repo.language})` : ""}
-                  </span>
+                <span className="font-display text-2xl tracking-wide text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
+                  {repo.name}
                 </span>
+                {repo.language && (
+                  <span className="ml-3 font-mono text-xs uppercase tracking-wider text-[var(--text-secondary)] opacity-60">
+                    {repo.language}
+                  </span>
+                )}
+                <span className="mx-8 text-[var(--accent-muted)] opacity-40">/</span>
               </a>
             ))}
         </Marquee>
       </div>
-    </div>
+
+      {/* Bottom border accent */}
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--accent)]/30 to-transparent" />
+    </motion.div>
   );
 }

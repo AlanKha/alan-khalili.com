@@ -1,9 +1,8 @@
 import { useState } from "react";
+import { motion } from "motion/react";
 import { SectionHeader } from "../ui/Section";
+import { HiArrowRight } from "react-icons/hi2";
 
-/**
- * The state of the contact form.
- */
 interface ContactState {
   name: string;
   email: string;
@@ -11,9 +10,6 @@ interface ContactState {
   message: string;
 }
 
-/**
- * The state of the response from the server.
- */
 interface ResponseState {
   type: "success" | "error" | "";
   message: string;
@@ -33,6 +29,7 @@ export default function Contact() {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const [focusedField, setFocusedField] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -60,7 +57,6 @@ export default function Contact() {
           type: "success",
           message: "Message sent successfully!",
         });
-        // Optional: Reset form
         setContact({ name: "", email: "", message: "", honeypot: "" });
       } else {
         setResponse({
@@ -80,95 +76,158 @@ export default function Contact() {
   };
 
   return (
-    <div id="Contact" className="px-6 lg:px-36 p-4 py-24 bg-custom-ivory">
-      <SectionHeader title="Contact" />
+    <motion.section
+      id="Contact"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8 }}
+      className="px-6 lg:px-24 xl:px-36 py-32 bg-[var(--bg-secondary)] relative overflow-hidden"
+    >
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-1/2 h-full opacity-[0.02] pointer-events-none">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(var(--text-primary) 1px, transparent 1px),
+              linear-gradient(90deg, var(--text-primary) 1px, transparent 1px)
+            `,
+            backgroundSize: "60px 60px",
+          }}
+        />
+      </div>
 
-      {response.type === "success" && (
-        <div className="text-center bg-custom-green text-custom-ivory p-6 border-2 border-custom-black shadow-[4px_4px_0px_0px_var(--color-custom-black)] mb-8">
-          <h3 className="font-serif text-2xl italic">Sent!</h3>
-          <p>{response.message}</p>
-        </div>
-      )}
-      {response.type === "error" && (
-        <div className="text-center bg-custom-red text-custom-ivory p-6 border-2 border-custom-black shadow-[4px_4px_0px_0px_var(--color-custom-black)] mb-8">
-           <h3 className="font-serif text-2xl italic">Error</h3>
-          <p>{response.message}</p>
-        </div>
-      )}
+      <div className="max-w-4xl mx-auto relative">
+        <SectionHeader title="Contact" subtitle="Let's build something together" />
 
-      {/* Hide form on success if desired, or leave it to allow multiple sends */}
-      {response.type !== "success" && (
-        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto">
-          {/* Honeypot Field - hidden from users but visible to bots */}
-          <input
-            type="text"
-            name="honeypot"
-            value={contact.honeypot}
-            onChange={handleChange}
-            className="hidden"
-            style={{ display: "none" }}
-            aria-hidden="true"
-            autoComplete="off"
-          />
-
-          <div className="grid md:grid-cols-2 gap-8 w-full py-2">
-            <div className="flex flex-col">
-              <label htmlFor="name" className="uppercase text-sm font-bold tracking-widest py-2 text-custom-black">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                className="bg-[var(--color-surface)] border-2 border-custom-black p-3 text-custom-black focus:outline-none focus:shadow-[4px_4px_0px_0px_var(--color-custom-black)] transition-shadow"
-                value={contact.name}
-                onChange={handleChange}
-                required
-                aria-label="Name"
-              />
-            </div>
-            <div className="flex flex-col">
-              <label htmlFor="email" className="uppercase text-sm font-bold tracking-widest py-2 text-custom-black">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className="bg-[var(--color-surface)] border-2 border-custom-black p-3 text-custom-black focus:outline-none focus:shadow-[4px_4px_0px_0px_var(--color-custom-black)] transition-shadow"
-                value={contact.email}
-                onChange={handleChange}
-                required
-                aria-label="Email"
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-col py-6">
-            <label htmlFor="message" className="uppercase text-sm font-bold tracking-widest py-2 text-custom-black">
-              Message
-            </label>
-            <textarea
-              className="bg-[var(--color-surface)] border-2 border-custom-black p-3 text-custom-black focus:outline-none focus:shadow-[4px_4px_0px_0px_var(--color-custom-black)] transition-shadow"
-              name="message"
-              id="message"
-              rows={8}
-              value={contact.message}
-              onChange={handleChange}
-              required
-              aria-label="Message"
-            ></textarea>
-          </div>
-
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="cursor-pointer bg-custom-black text-custom-ivory border-2 border-custom-black p-4 font-bold uppercase tracking-widest hover:bg-[var(--color-surface)] hover:text-custom-black hover:shadow-[6px_6px_0px_0px_var(--color-custom-black)] transition-all w-full mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
+        {response.type === "success" && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center py-16"
           >
-            {isLoading ? "Sending..." : "Send Message"}
-          </button>
-        </form>
-      )}
-    </div>
+            <div className="w-16 h-16 mx-auto mb-6 border-2 border-[var(--accent)] flex items-center justify-center">
+              <svg className="w-8 h-8 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h3 className="font-display text-4xl text-[var(--text-primary)] mb-4">Message Sent</h3>
+            <p className="text-[var(--text-secondary)]">{response.message}</p>
+          </motion.div>
+        )}
+
+        {response.type === "error" && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-8 p-6 border border-[var(--color-custom-red)]/30 bg-[var(--color-custom-red)]/5"
+          >
+            <p className="text-[var(--color-custom-red)] font-mono text-sm">{response.message}</p>
+          </motion.div>
+        )}
+
+        {response.type !== "success" && (
+          <form onSubmit={handleSubmit} className="space-y-8">
+            {/* Honeypot Field */}
+            <input
+              type="text"
+              name="honeypot"
+              value={contact.honeypot}
+              onChange={handleChange}
+              className="hidden"
+              style={{ display: "none" }}
+              aria-hidden="true"
+              autoComplete="off"
+            />
+
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="relative pt-8">
+                <label
+                  htmlFor="name"
+                  className={`absolute left-0 transition-all duration-300 pointer-events-none font-mono text-xs uppercase tracking-[0.2em] ${
+                    focusedField === "name" || contact.name
+                      ? "top-0 text-[var(--accent)]"
+                      : "top-12 text-[var(--text-secondary)]/60"
+                  }`}
+                >
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className="w-full bg-transparent border-b-2 border-[var(--border)]/30 py-4 text-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-all duration-300"
+                  value={contact.name}
+                  onChange={handleChange}
+                  onFocus={() => setFocusedField("name")}
+                  onBlur={() => setFocusedField(null)}
+                  required
+                />
+              </div>
+
+              <div className="relative pt-8">
+                <label
+                  htmlFor="email"
+                  className={`absolute left-0 transition-all duration-300 pointer-events-none font-mono text-xs uppercase tracking-[0.2em] ${
+                    focusedField === "email" || contact.email
+                      ? "top-0 text-[var(--accent)]"
+                      : "top-12 text-[var(--text-secondary)]/60"
+                  }`}
+                >
+                  Your Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className="w-full bg-transparent border-b-2 border-[var(--border)]/30 py-4 text-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-all duration-300"
+                  value={contact.email}
+                  onChange={handleChange}
+                  onFocus={() => setFocusedField("email")}
+                  onBlur={() => setFocusedField(null)}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="relative pt-8">
+              <label
+                htmlFor="message"
+                className={`absolute left-0 transition-all duration-300 pointer-events-none font-mono text-xs uppercase tracking-[0.2em] ${
+                  focusedField === "message" || contact.message
+                    ? "top-0 text-[var(--accent)]"
+                    : "top-12 text-[var(--text-secondary)]/60"
+                }`}
+              >
+                Your Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows={5}
+                className="w-full bg-transparent border-b-2 border-[var(--border)]/30 py-4 text-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-all duration-300 resize-none"
+                value={contact.message}
+                onChange={handleChange}
+                onFocus={() => setFocusedField("message")}
+                onBlur={() => setFocusedField(null)}
+                required
+              />
+            </div>
+
+            <motion.button
+              type="submit"
+              disabled={isLoading}
+              whileHover={{ x: 4 }}
+              whileTap={{ scale: 0.98 }}
+              className="group flex items-center gap-4 bg-[var(--accent)] text-[var(--bg-primary)] px-8 py-4 font-mono text-sm uppercase tracking-widest disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-[8px_8px_0px_0px_var(--text-primary)]"
+            >
+              <span>{isLoading ? "Sending..." : "Send Message"}</span>
+              <HiArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </motion.button>
+          </form>
+        )}
+      </div>
+    </motion.section>
   );
 }
