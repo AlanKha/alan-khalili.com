@@ -82,6 +82,7 @@ export default function Hero() {
             animate={{ y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.33, 1, 0.68, 1] }}
             className="font-display text-[clamp(4rem,15vw,14rem)] leading-[0.85] tracking-tight text-[var(--text-primary)] glitch-hover"
+            data-text={heroContent.name.split(" ")[0]}
           >
             {heroContent.name.split(" ")[0]}
           </motion.h1>
@@ -91,7 +92,8 @@ export default function Hero() {
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: [0.33, 1, 0.68, 1] }}
-            className="font-display text-[clamp(4rem,15vw,14rem)] leading-[0.85] tracking-tight text-transparent"
+            className="font-display text-[clamp(4rem,15vw,14rem)] leading-[0.85] tracking-tight text-transparent glitch-hover"
+            data-text={heroContent.name.split(" ")[1]}
             style={{
               WebkitTextStroke: "2px var(--text-primary)",
             }}
