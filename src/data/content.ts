@@ -4,8 +4,8 @@ export const heroContent = {
   greeting: "Hi, my name is",
   name: "Alan Khalili",
   emoji: "👋",
-  intro: "Excited to join Capital One as a Software Engineer in August!",
-  highlight: "I love coding, coffee, and keyboards!",
+  intro: "Recently joined Capital One as a SWE!",
+  highlight: "Always down to talk over coffee, so reach out!",
   callToAction: "Always on the lookout for new, exciting opportunities! Feel free to",
   linkText: "reach out",
 };
@@ -35,6 +35,15 @@ export interface ProjectItem {
 }
 
 export const experiences: ExperienceItem[] = [
+  {
+    id: "capital-one-tdp",
+    imageSrc: "https://2tbvn4haj0.ufs.sh/f/jTupBFNKiwOd65vcOILQmr3nSqMDtoYa2EBW9uscCxpfXk8U",
+    imageAlt: "Capital One wordmark placeholder",
+    title: "Software Engineer, Capital One (TDP)",
+    description:
+      "Just starting out in Capital One's Technology Development Program — more to share once I've settled in.",
+    link: "https://www.capitalone.com/",
+  },
   {
     id: "walmart-intern",
     imageSrc:
